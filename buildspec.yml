@@ -2,16 +2,22 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18 # or python: 3.11, java: corretto11, etc. based on your project
     commands:
-      - echo "Install phase - nothing needed here"
+      - echo "Install phase - installing dependencies if needed"
+      - npm install # or pip install -r requirements.txt, mvn install, etc.
   pre_build:
     commands:
-      - echo "Pre-build phase - setup if needed"
+      - echo "Pre-build phase - preparing environment"
+      - echo "Current directory contents:"
+      - ls -la
   build:
     commands:
-      - echo "Build phase - your commands go here"
-      - echo "For example, just listing files:"
+      - echo "Build phase - executing build commands"
+      - echo "Listing files again after build steps:"
       - ls -la
 artifacts:
   files:
     - '**/*'
+  discard-paths: yes
